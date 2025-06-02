@@ -34,5 +34,5 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>()
    create a cotrooler AccountController  
    create action  Register and view Register
     import _viewImports.cshtmladd global level@using IdentiyEntiyframework.Models.ViewModels
-
+14)Login partial custom view create _LoginPartial  intilize the _layout.cshtml <partial name="_LoginPartial" />
 
