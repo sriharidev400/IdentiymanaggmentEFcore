@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using IdentiyEntiyframework.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace IdentiyEntiyframework.DataBase
@@ -10,5 +11,7 @@ namespace IdentiyEntiyframework.DataBase
         {
             
         }
+        public DbSet<Applicationuser> Applicationusers { get; set; }
+
     }
 }

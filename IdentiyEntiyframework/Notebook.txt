@@ -20,3 +20,15 @@ Options.UseSqlServer(builder.Configuration.GetConnectionString("conn")));
 10)Add identity services in programs.cs 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDBcontext>();
+
+11)add extra column to user table
+    add a class Applicationuser in model folder inhertied to IdentityUser
+    create a property name Name
+    add a the blow line ApplicationDBcontext
+    public DbSet<Applicationuser> Applicationusers { get; set; }
+    mange nuget package manger console 
+    add-migration AddNameToAspNetUsersTable
+    update-database
+
+
+
