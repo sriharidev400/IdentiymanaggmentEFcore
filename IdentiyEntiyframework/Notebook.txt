@@ -29,6 +29,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     mange nuget package manger console 
     add-migration AddNameToAspNetUsersTable
     update-database
+12)create a Register and LoginviewModel
 
 
 
