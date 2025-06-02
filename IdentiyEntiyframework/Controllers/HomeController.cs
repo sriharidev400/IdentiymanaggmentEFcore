@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using IdentiyEntiyframework.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IdentiyEntiyframework.Controllers
@@ -18,6 +19,7 @@ namespace IdentiyEntiyframework.Controllers
             return View();
         }
 
+        [Authorize]
         public IActionResult Privacy()
         {
             return View();

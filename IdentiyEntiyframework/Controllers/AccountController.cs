@@ -22,17 +22,19 @@ namespace IdentiyEntiyframework.Controllers
             _signInManager = signInManager;
               
         }
-        public IActionResult Register()
+        public IActionResult Register(string returnurl = null)
         {
+            ViewData["ReturnUrl"] = returnurl;
             RegisterViewModel registerViewModel = new();
             return View(registerViewModel);
         }
 
         [HttpPost]        
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterViewModel model)
+        public async Task<IActionResult> Register(RegisterViewModel model, string returnurl = null)
         {
-           
+            ViewData["ReturnUrl"] = returnurl;
+            returnurl = returnurl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
                 var user = new Applicationuser
@@ -44,22 +46,24 @@ namespace IdentiyEntiyframework.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded) { 
                  await _signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index", "Home");
+                    return LocalRedirect(returnurl);
                 }
                 AddErrors(result);
             }
             return View(model);
         }
 
-        public IActionResult Login()
+        public IActionResult Login(string returnurl = null)
         {
+            ViewData["ReturnUrl"] = returnurl;
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginViewModel model)
+        public async Task<IActionResult> Login(LoginViewModel model, string returnurl = null)
         {
-
+            ViewData["ReturnUrl"] = returnurl;
+            returnurl = returnurl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
                
@@ -67,7 +71,7 @@ namespace IdentiyEntiyframework.Controllers
                 if (result.Succeeded)
                 {
                     
-                    return RedirectToAction("Index", "Home");
+                    return LocalRedirect(returnurl);
                 }
                 else
                 {
