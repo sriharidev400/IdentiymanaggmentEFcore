@@ -29,7 +29,10 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     mange nuget package manger console 
     add-migration AddNameToAspNetUsersTable
     update-database
-12)create a Register and LoginviewModel
-
+12)create a Register and LoginviewModel in model folder
+13)create viewmodels loginview model register view model 
+   create a cotrooler AccountController  
+   create action  Register and view Register
+    import _viewImports.cshtmladd global level@using IdentiyEntiyframework.Models.ViewModels
 
 
