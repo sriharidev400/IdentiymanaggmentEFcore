@@ -36,3 +36,13 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     import _viewImports.cshtmladd global level@using IdentiyEntiyframework.Models.ViewModels
 14)Login partial custom view create _LoginPartial  intilize the _layout.cshtml <partial name="_LoginPartial" />
 15)create register action method in acoount coontroller register first user
+16)Handle erros 
+    private void AddErrors(IdentityResult result)
+        {
+            foreach(var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+        }
+ call the AddErrors() method
+
