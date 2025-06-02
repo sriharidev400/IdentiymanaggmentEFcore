@@ -45,4 +45,10 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>()
             }
         }
  call the AddErrors() method
+17)display the user 
+loginpartial.cshtml 
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentiyEntiyframework.Models.Applicationuser> signInManager
+@inject UserManager<IdentiyEntiyframework.Models.Applicationuser> userManager
+18)
 
