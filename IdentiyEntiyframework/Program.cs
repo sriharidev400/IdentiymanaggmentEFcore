@@ -1,4 +1,5 @@
 using IdentiyEntiyframework.DataBase;
+using IdentiyEntiyframework.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,8 +10,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDBcontext>(Options =>
 Options.UseSqlServer(builder.Configuration.GetConnectionString("conn")));
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-    .AddEntityFrameworkStores<ApplicationDBcontext>();
+builder.Services.AddIdentity<Applicationuser, IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDBcontext>().AddDefaultTokenProviders();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

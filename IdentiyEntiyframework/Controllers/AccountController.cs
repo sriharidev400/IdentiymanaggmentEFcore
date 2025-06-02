@@ -1,5 +1,6 @@
 ﻿using IdentiyEntiyframework.Models;
 using IdentiyEntiyframework.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +18,9 @@ namespace IdentiyEntiyframework.Controllers
              SignInManager<Applicationuser> signInManager
             )
         {
-            
+            _userManager = userManager;
+            _signInManager = signInManager;
+              
         }
         public IActionResult Register()
         {
@@ -26,9 +29,11 @@ namespace IdentiyEntiyframework.Controllers
         }
 
         [HttpPost]
+        
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
+           
             if (ModelState.IsValid)
             {
                 var user = new Applicationuser
