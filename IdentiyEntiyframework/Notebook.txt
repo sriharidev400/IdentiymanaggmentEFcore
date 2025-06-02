@@ -17,3 +17,6 @@ Options.UseSqlServer(builder.Configuration.GetConnectionString("conn")));
    9.1)Add-Migration <migrationName>  examplw Add-Migration AddIdentiytable (script genrate)
    9.2)Update-Database (database table update in database )
 
+10)Add identity services in programs.cs 
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDBcontext>();
