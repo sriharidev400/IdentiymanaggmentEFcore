@@ -52,5 +52,7 @@ loginpartial.cshtml
 @inject UserManager<IdentiyEntiyframework.Models.Applicationuser> userManager
 18)LogOff in Accountcontroller
 20)login view 
+21)login in action
+
 
 

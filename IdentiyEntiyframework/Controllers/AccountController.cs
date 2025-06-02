@@ -28,8 +28,7 @@ namespace IdentiyEntiyframework.Controllers
             return View(registerViewModel);
         }
 
-        [HttpPost]
-        
+        [HttpPost]        
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
@@ -56,6 +55,30 @@ namespace IdentiyEntiyframework.Controllers
         {
             return View();
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+
+            if (ModelState.IsValid)
+            {
+               
+                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password,model.RemberMe,lockoutOnFailure:false);
+                if (result.Succeeded)
+                {
+                    
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Invalid login attempt");
+                    return View(model);
+                }
+                    
+            }
+            return View(model);
+        }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
