@@ -1,0 +1,19 @@
+﻿1)create .net core mvc template
+2)appsetting.json write a connection string
+3)create the database name IdentityManagerEntityFramework
+4)create  folder database in solution
+5)create a ApplicationDbcontext class inherated to IdentityDbContext
+6)create a constructor ApplicationDbcontext pass the paramater DbContextOptions inherated to base options
+7)install the required packages
+   7.1)Microsoft.AspNetcore.Identiy.Entityframeworkcore
+   7.2)Microsoft.Entiyframeworkcore
+   7.3)Microsoft.Entiyframeworkcore.sqlserver
+   7.4)Microsoft.Entiyframeworkcore.Tools
+8)programs.cs file add the below line 
+   builder.Services.AddDbContext<ApplicationDBcontext>(Options =>
+Options.UseSqlServer(builder.Configuration.GetConnectionString("conn")));
+
+9)Nuget package manager console run the below commands 
+   9.1)Add-Migration <migrationName>  examplw Add-Migration AddIdentiytable (script genrate)
+   9.2)Update-Database (database table update in database )
+
