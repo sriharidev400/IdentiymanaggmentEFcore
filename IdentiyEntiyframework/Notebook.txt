@@ -63,3 +63,5 @@ loginpartial.cshtml
   install the nuget pckage sendgrid
   create class EmailSender:IEmailSender 
 26)Reset password token
+27)Reset password view model
+28)Reset pasword in Action
