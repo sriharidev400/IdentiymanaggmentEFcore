@@ -54,6 +54,6 @@ loginpartial.cshtml
 20)login view 
 21)login in action and Return url in action
 22)default password requiremnts
-
+23)Lockout in action
 
 

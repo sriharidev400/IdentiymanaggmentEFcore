@@ -67,11 +67,15 @@ namespace IdentiyEntiyframework.Controllers
             if (ModelState.IsValid)
             {
                
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password,model.RemberMe,lockoutOnFailure:false);
+                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password,model.RemberMe,lockoutOnFailure:true);
                 if (result.Succeeded)
                 {
                     
                     return LocalRedirect(returnurl);
+                }
+                if (result.IsLockedOut)
+                {
+                    return View("Lockout");
                 }
                 else
                 {
@@ -92,6 +96,10 @@ namespace IdentiyEntiyframework.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public IActionResult Lockout()
+        {
+            return View();
+        }
         private void AddErrors(IdentityResult result)
         {
             foreach(var error in result.Errors)
