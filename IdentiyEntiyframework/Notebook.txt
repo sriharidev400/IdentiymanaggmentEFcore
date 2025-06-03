@@ -55,5 +55,8 @@ loginpartial.cshtml
 21)login in action and Return url in action
 22)default password requiremnts
 23)Lockout in action
-
-
+24)forget password view 
+25)send grid setup (must and should need  a domain)
+   appseting.json "sendgrid":{
+   "SecretKey":""
+   }
