@@ -60,3 +60,6 @@ loginpartial.cshtml
    appseting.json "sendgrid":{
    "SecretKey":""
    }
+  install the nuget pckage sendgrid
+  create class EmailSender:IEmailSender 
+

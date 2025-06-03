@@ -1,6 +1,8 @@
 using IdentiyEntiyframework.DataBase;
 using IdentiyEntiyframework.Models;
+using IdentiyEntiyframework.Services;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +14,7 @@ Options.UseSqlServer(builder.Configuration.GetConnectionString("conn")));
 
 builder.Services.AddIdentity<Applicationuser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDBcontext>().AddDefaultTokenProviders();
+builder.Services.AddTransient<IEmailSender, EmailSender>();
 builder.Services.Configure<IdentityOptions>(opt =>
 {
     opt.Password.RequireDigit = false;
