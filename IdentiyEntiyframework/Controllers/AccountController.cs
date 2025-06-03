@@ -46,8 +46,16 @@ namespace IdentiyEntiyframework.Controllers
                     Name = model.Name
                 };
                 var result = await _userManager.CreateAsync(user, model.Password);
-                if (result.Succeeded) { 
-                 await _signInManager.SignInAsync(user, isPersistent: false);
+                if (result.Succeeded) {
+                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    var callbackurl = Url.Action("ConfirmEmail", "Account", new
+                    {
+                        userid = user.Id,
+                        code = code
+                    }, HttpContext.Request.Scheme);
+                    await _emailSender.SendEmailAsync(model.Email, "Confirm Email - Identity Manager",
+                                        $"Please confirm Email by clicking here: <a href='{callbackurl}'>link</a>");
+                    await _signInManager.SignInAsync(user, isPersistent: false);
                     return LocalRedirect(returnurl);
                 }
                 AddErrors(result);
@@ -98,7 +106,34 @@ namespace IdentiyEntiyframework.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [HttpGet]
+       
+        public async Task<IActionResult> ConfirmEmail(string code,string userId)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByIdAsync(userId);
+                if (user == null)
+                {
+                    return View("Error");
+                }
+                var result = await _userManager.ConfirmEmailAsync(user,code);
+                if (result.Succeeded)
+                {
+                    return View();
+                }
+                
+            }
+            return View("Error");
+        }
+        [HttpGet]
+        
         public IActionResult Lockout()
+        {
+            return View();
+        }
+        [HttpGet]
+        public IActionResult Error()
         {
             return View();
         }

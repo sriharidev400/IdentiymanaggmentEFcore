@@ -65,3 +65,5 @@ loginpartial.cshtml
 26)Reset password token
 27)Reset password view model
 28)Reset pasword in Action
+29)confirm email check in database 
+
