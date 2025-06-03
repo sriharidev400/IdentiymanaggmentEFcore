@@ -13,13 +13,15 @@ namespace IdentiyEntiyframework.Controllers
         private readonly UserManager<Applicationuser> _userManager;
         
         private readonly SignInManager<Applicationuser> _signInManager;
+        private readonly IEmailSender _emailSender;
 
         public AccountController(UserManager<Applicationuser> userManager, 
-             SignInManager<Applicationuser> signInManager
+             SignInManager<Applicationuser> signInManager,IEmailSender emailSender
             )
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _emailSender = emailSender;
               
         }
         public IActionResult Register(string returnurl = null)
@@ -106,13 +108,49 @@ namespace IdentiyEntiyframework.Controllers
             return View();
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public  async Task<IActionResult> ForgetPassword(ForgetPasswordViewModel model)
         {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByEmailAsync(model.Email);
+                if (user == null)
+                {
+                    return RedirectToAction("ForgetPasswordConfirmation");
+                }
+                var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var callbackurl = Url.Action("ResetPassword", "Account", new
+                {
+                    userid = user.Id,
+                    code = code
+                }, HttpContext.Request.Scheme
+                );
+                await _emailSender.SendEmailAsync(model.Email, "Reset Password - Identity Manager",
+                                       $"Please reset your password by clicking here: <a href='{callbackurl}'>link</a>");
+                return RedirectToAction(nameof(ForgetPasswordConfirmation));
+            }
             return View(model);
         }
+
+        public IActionResult ResetPassword(string code = null)
+        {
+            return code == null ? View("Error") : View();
+        }
+
+        [HttpGet]
+        public IActionResult ForgetPasswordConfirmation()
+        {
+            return View();
+        }
+
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public  async Task<IActionResult> ForgetPassword(ForgetPasswordViewModel model)
+        //{
+        //    return View(model);
+        //}
         private void AddErrors(IdentityResult result)
         {
             foreach(var error in result.Errors)
