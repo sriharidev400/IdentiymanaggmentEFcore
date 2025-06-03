@@ -12,6 +12,12 @@ Options.UseSqlServer(builder.Configuration.GetConnectionString("conn")));
 
 builder.Services.AddIdentity<Applicationuser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDBcontext>().AddDefaultTokenProviders();
+builder.Services.Configure<IdentityOptions>(opt =>
+{
+    opt.Password.RequireDigit = false;
+    opt.Password.RequireLowercase = false;
+    opt.Password.RequireNonAlphanumeric = false;
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
