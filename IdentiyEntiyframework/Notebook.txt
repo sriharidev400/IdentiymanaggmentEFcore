@@ -67,3 +67,4 @@ loginpartial.cshtml
 28)Reset pasword in Action
 29)confirm email check in database 
 30)Enable Authenticator Getendpoint
+31)Enable Authentication view
