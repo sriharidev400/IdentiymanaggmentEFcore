@@ -74,3 +74,6 @@ loginpartial.cshtml
 35) Verfiy Authenticator view 
 36)Two factor Authenticator Action
 37)QR code in action
+38)Button to reset two factor auth 
+39)RemoveAuthenticator two factor
+ 
