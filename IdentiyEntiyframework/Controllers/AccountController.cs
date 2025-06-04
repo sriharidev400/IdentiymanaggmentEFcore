@@ -204,7 +204,11 @@ namespace IdentiyEntiyframework.Controllers
         {
             return View();
         }
-
+        [HttpGet]
+        public IActionResult AuthenticatorConfirmation()
+        {
+            return View();
+        }
 
         //[HttpPost]
         //[ValidateAntiForgeryToken]
@@ -221,6 +225,28 @@ namespace IdentiyEntiyframework.Controllers
             var token = await _userManager.GetAuthenticatorKeyAsync(user);
             var model = new TwoFactorAuthenticationViewModel() { Token = token };
             return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EnableAuthenticator(TwoFactorAuthenticationViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.GetUserAsync(User);
+                var succeeded = await _userManager.VerifyTwoFactorTokenAsync(user, _userManager.Options.Tokens.AuthenticatorTokenProvider, model.Code);
+                if (succeeded)
+                {
+                    await _userManager.SetTwoFactorEnabledAsync(user, true);
+                }
+                else
+                {
+                    ModelState.AddModelError("Verifiy", "your two factor auth code could not be validated");
+                    return View(model);
+                }
+                    return RedirectToAction(nameof(AuthenticatorConfirmation));
+            }
+            return View("Error");
         }
         private void AddErrors(IdentityResult result)
         {

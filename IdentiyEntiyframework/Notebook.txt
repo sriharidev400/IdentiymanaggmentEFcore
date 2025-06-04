@@ -68,3 +68,7 @@ loginpartial.cshtml
 29)confirm email check in database 
 30)Enable Authenticator Getendpoint
 31)Enable Authentication view
+32)enable authentication post login
+33)setup Two Factor Auth on Account
+
+
