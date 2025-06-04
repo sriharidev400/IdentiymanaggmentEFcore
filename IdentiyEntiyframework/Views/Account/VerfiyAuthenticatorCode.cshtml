@@ -1,7 +1,7 @@
 ﻿@model VerfiyAuthenticatorViewModel
 <div class="row col-md-10 offset-md-1">
     <h1 class="text-primary text-center pt-2">Verfiy Authenticator code</h1>
-    <form method="post" asp-controller="Account" asp-action="VerifyAuthenticatorCode"
+    <form method="post" asp-controller="Account" asp-action="VerfiyAuthenticatorCode"
           asp-route-returnurl="@ViewData["ReturnUrl"]">
         <input asp-for="RemberMe" type="hidden" />
         <div class="border p-2 rounded">
