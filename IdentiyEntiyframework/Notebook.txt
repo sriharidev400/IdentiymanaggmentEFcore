@@ -70,5 +70,6 @@ loginpartial.cshtml
 31)Enable Authentication view
 32)enable authentication post login
 33)setup Two Factor Auth on Account
-
+34)Verfiy Authenticator Get Action
+35) Verfiy Authenticator view 
 

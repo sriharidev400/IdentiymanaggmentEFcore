@@ -83,6 +83,11 @@ namespace IdentiyEntiyframework.Controllers
                     
                     return LocalRedirect(returnurl);
                 }
+                if (result.RequiresTwoFactor)
+                {
+                    return RedirectToAction(nameof(VerfiyAuthenticatorCode),new { ReturnUrl = returnUrl, RemberMe = remberMe });
+
+                }
                 if (result.IsLockedOut)
                 {
                     return View("Lockout");
@@ -97,6 +102,17 @@ namespace IdentiyEntiyframework.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> VerfiyAuthenticatorCode(bool remberMe, string returnUrl=null)
+        {
+            var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
+            if (user == null)
+            {
+                return View("Error");
+            }
+            ViewData["ReturnUrl"] = returnUrl;
+            return View(new VerfiyAuthenticatorViewModel { ReturnUrl=returnUrl,RemberMe=remberMe});
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
