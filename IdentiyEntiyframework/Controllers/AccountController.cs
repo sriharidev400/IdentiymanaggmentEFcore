@@ -114,6 +114,33 @@ namespace IdentiyEntiyframework.Controllers
             return View(new VerfiyAuthenticatorViewModel { ReturnUrl=returnUrl,RemberMe=remberMe});
         }
 
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> VerfiyAuthenticatorCode(VerfiyAuthenticatorViewModel model)
+        {
+            
+            model.ReturnUrl = model.ReturnUrl ?? Url.Content("~/");
+            
+
+                var result = await _signInManager.TwoFactorAuthenticatorSignInAsync(model.Code,model.RemberMe,rememberClient: false);
+                if (result.Succeeded)
+                {
+
+                    return LocalRedirect(model.ReturnUrl);
+                }
+
+                if (result.IsLockedOut)
+                {
+                    return View("Lockout");
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Invalid login attempt");
+                    return View(model);
+                }
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> LogOff()

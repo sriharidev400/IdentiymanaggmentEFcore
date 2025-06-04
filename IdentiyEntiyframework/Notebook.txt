@@ -72,4 +72,4 @@ loginpartial.cshtml
 33)setup Two Factor Auth on Account
 34)Verfiy Authenticator Get Action
 35) Verfiy Authenticator view 
-
+36)Two factor Authenticator Action
