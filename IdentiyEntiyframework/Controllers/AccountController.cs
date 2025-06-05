@@ -8,6 +8,7 @@ using System.Text.Encodings.Web;
 
 namespace IdentiyEntiyframework.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
         private readonly UserManager<Applicationuser> _userManager;
@@ -25,6 +26,7 @@ namespace IdentiyEntiyframework.Controllers
             _urlEncoder = urlEncoder;
 
         }
+        [AllowAnonymous]
         public IActionResult Register(string returnurl = null)
         {
             ViewData["ReturnUrl"] = returnurl;
@@ -32,7 +34,8 @@ namespace IdentiyEntiyframework.Controllers
             return View(registerViewModel);
         }
 
-        [HttpPost]        
+        [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model, string returnurl = null)
         {
@@ -63,13 +66,14 @@ namespace IdentiyEntiyframework.Controllers
             }
             return View(model);
         }
-
+        [AllowAnonymous]
         public IActionResult Login(string returnurl = null)
         {
             ViewData["ReturnUrl"] = returnurl;
             return View();
         }
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model, string returnurl = null)
         {
@@ -105,6 +109,7 @@ namespace IdentiyEntiyframework.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> VerfiyAuthenticatorCode(bool remberMe, string returnUrl=null)
         {
             var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
@@ -118,6 +123,7 @@ namespace IdentiyEntiyframework.Controllers
 
 
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> VerfiyAuthenticatorCode(VerfiyAuthenticatorViewModel model)
         {
@@ -156,7 +162,7 @@ namespace IdentiyEntiyframework.Controllers
         }
 
         [HttpGet]
-       
+        [AllowAnonymous]
         public async Task<IActionResult> ConfirmEmail(string code,string userId)
         {
             if (ModelState.IsValid)
@@ -176,23 +182,26 @@ namespace IdentiyEntiyframework.Controllers
             return View("Error");
         }
         [HttpGet]
-        
+        [AllowAnonymous]
         public IActionResult Lockout()
         {
             return View();
         }
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Error()
         {
             return View();
         }
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult ForgetPassword()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public  async Task<IActionResult> ForgetPassword(ForgetPasswordViewModel model)
         {
@@ -217,11 +226,13 @@ namespace IdentiyEntiyframework.Controllers
             return View(model);
         }
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult ResetPassword(string code = null)
         {
             return code == null ? View("Error") : View();
         }
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public  async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
         {
@@ -242,6 +253,7 @@ namespace IdentiyEntiyframework.Controllers
             return View();
         }
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult ResetPasswordConfirmation()
         {
             return View();
@@ -249,11 +261,13 @@ namespace IdentiyEntiyframework.Controllers
 
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult ForgetPasswordConfirmation()
         {
             return View();
         }
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult AuthenticatorConfirmation()
         {
             return View();

@@ -76,4 +76,5 @@ loginpartial.cshtml
 37)QR code in action
 38)Button to reset two factor auth 
 39)RemoveAuthenticator two factor
- 
+======= Role Managment ========
+40)Basic Authentication
