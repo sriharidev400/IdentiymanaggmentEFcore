@@ -33,6 +33,14 @@
                     <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                 </div>
             </div>
+            <div class="form-group">
+                <lable asp-for="RoleSelected" class="col-12"></lable>
+                <div class="col-md-12">
+                    <select asp-for="RoleSelected" asp-items="@Model.RoleList" class="form-select">
+                        <option disabled selected>--SelectRole---</option>
+                    </select>
+                </div>
+            </div>
 
             <div class="form-group pt-3">
                 

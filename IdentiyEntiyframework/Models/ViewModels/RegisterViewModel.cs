@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace IdentiyEntiyframework.Models.ViewModels
@@ -21,5 +22,8 @@ namespace IdentiyEntiyframework.Models.ViewModels
         [Display(Name="confirm password")]
         [Compare("Password",ErrorMessage ="The password and confirmation password do not match")]
         public string ConfirmPassword { get; set; }
+
+        public IEnumerable<SelectListItem> RoleList { get; set; }
+        public string? RoleSelected { get; set; }
     }
 }

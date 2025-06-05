@@ -79,3 +79,4 @@ loginpartial.cshtml
 ======= Role Managment ========
 40)Basic Authentication
 41)create roles
+42)display the roles in dropdown
