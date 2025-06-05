@@ -15,6 +15,10 @@ Options.UseSqlServer(builder.Configuration.GetConnectionString("conn")));
 builder.Services.AddIdentity<Applicationuser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDBcontext>().AddDefaultTokenProviders();
 builder.Services.AddTransient<IEmailSender, EmailSender>();
+builder.Services.ConfigureApplicationCookie(opt =>
+{
+    opt.AccessDeniedPath = new PathString("/Account/NoAccess");
+});
 builder.Services.Configure<IdentityOptions>(opt =>
 {
     opt.Password.RequireDigit = false;
