@@ -68,6 +68,14 @@ namespace IdentiyEntiyframework.Controllers
                 };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded) {
+                    if(model.RoleSelected!=null&& model.RoleSelected.Length>0 && model.RoleSelected == SD.Admin)
+                    {
+                        await _userManager.AddToRoleAsync(user, SD.Admin);
+                    }
+                    else
+                    {
+                        await _userManager.AddToRoleAsync(user, SD.User);
+                    }
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackurl = Url.Action("ConfirmEmail", "Account", new
                     {
