@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Encodings.Web;
+using System.Threading.Tasks;
 
 namespace IdentiyEntiyframework.Controllers
 {
@@ -12,23 +13,30 @@ namespace IdentiyEntiyframework.Controllers
     public class AccountController : Controller
     {
         private readonly UserManager<Applicationuser> _userManager;
-        
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<Applicationuser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly UrlEncoder _urlEncoder;
         public AccountController(UserManager<Applicationuser> userManager, 
-             SignInManager<Applicationuser> signInManager,IEmailSender emailSender, UrlEncoder urlEncoder
+             SignInManager<Applicationuser> signInManager,
+             IEmailSender emailSender, UrlEncoder urlEncoder, RoleManager<IdentityRole> roleManager
             )
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _urlEncoder = urlEncoder;
+            _roleManager = roleManager;
 
         }
         [AllowAnonymous]
-        public IActionResult Register(string returnurl = null)
+        public async Task<IActionResult> Register(string returnurl = null)
         {
+            if(!_roleManager.RoleExistsAsync(SD.Admin).GetAwaiter().GetResult())
+            {
+                await _roleManager.CreateAsync(new IdentityRole(SD.Admin));
+                await _roleManager.CreateAsync(new IdentityRole(SD.User));
+            }
             ViewData["ReturnUrl"] = returnurl;
             RegisterViewModel registerViewModel = new();
             return View(registerViewModel);
