@@ -80,3 +80,4 @@ loginpartial.cshtml
 40)Basic Authentication
 41)create roles
 42)display the roles in dropdown
+43)Dynamic roles

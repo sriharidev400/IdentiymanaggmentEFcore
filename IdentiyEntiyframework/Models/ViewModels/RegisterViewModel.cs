@@ -24,6 +24,7 @@ namespace IdentiyEntiyframework.Models.ViewModels
         public string ConfirmPassword { get; set; }
 
         public IEnumerable<SelectListItem> RoleList { get; set; }
+        [Display(Name="Role")]
         public string? RoleSelected { get; set; }
     }
 }
