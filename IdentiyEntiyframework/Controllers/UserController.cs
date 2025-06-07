@@ -8,6 +8,7 @@ namespace IdentiyEntiyframework.Controllers
 {
     public class UserController : Controller
     {
+        
         private readonly ApplicationDBcontext  _db;
         private readonly UserManager<Applicationuser> _userManager;
 

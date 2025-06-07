@@ -22,7 +22,7 @@
     {
         <h2 class="text-success">Your role is -Admin</h2>
     }
-    else
+    @if(User.IsInRole(SD.User))
     {
         <h3 class="text-success">Your role is User</h3>
     }
