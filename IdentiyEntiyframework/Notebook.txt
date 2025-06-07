@@ -84,3 +84,5 @@ loginpartial.cshtml
 44)Role selection during registration
 45)configure application cookies
 
+===========user List================
+46)create user controller
