@@ -29,5 +29,20 @@ namespace IdentiyEntiyframework.Controllers
 
             return View(roles);
         }
+        [HttpGet]
+        public IActionResult Upsert(string roleId)
+        {
+            if (String.IsNullOrEmpty(roleId))
+            {
+                //create
+                return View();
+            }
+            else
+            {
+                //update
+                var objFromDb = _db.Roles.FirstOrDefault(u => u.Id == roleId);
+                return View(objFromDb);
+            }
+        }
     }
 }
