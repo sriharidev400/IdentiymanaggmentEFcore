@@ -87,4 +87,5 @@ loginpartial.cshtml
 ===========user List================
 46)create user controller
 47)user list
+48) get the roles in database display the Role List
 
