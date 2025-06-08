@@ -44,5 +44,30 @@ namespace IdentiyEntiyframework.Controllers
                 return View(objFromDb);
             }
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Upsert(IdentityRole roleObj)
+        {
+            if (await _roleManager.RoleExistsAsync(roleObj.Name))
+            {
+                //error
+                
+            }
+            if (String.IsNullOrEmpty(roleObj.NormalizedName))
+            {
+                await _roleManager.CreateAsync(new IdentityRole() { Name = roleObj.Name });
+            }
+            else
+            {
+                //update
+                var objFromDb = _db.Roles.FirstOrDefault(u => u.Id == roleObj.Id);
+                objFromDb.Name = roleObj.Name;
+                objFromDb.NormalizedName = roleObj.Name.ToUpper();
+                var result = await _roleManager.UpdateAsync(objFromDb);
+                
+            }
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
