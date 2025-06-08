@@ -90,3 +90,4 @@ loginpartial.cshtml
 48) get the roles in database display the Role List
 49)view for creating updating Role
 50)edit and delete buttons Role
+60)delete a role in ui 
