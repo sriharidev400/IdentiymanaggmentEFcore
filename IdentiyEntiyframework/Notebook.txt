@@ -100,3 +100,5 @@ loginpartial.cshtml
 66)Lock and unlock button
 67)Lock and unlock  in action
 68)Delete user
+===========claim managment =============
+69)Claim store (create a statick class list of create edit and delete)
