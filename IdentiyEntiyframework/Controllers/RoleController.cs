@@ -74,7 +74,7 @@ namespace IdentiyEntiyframework.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(string roleId)
         {
-            var objFromDb = _db.Roles.FirstOrDefault(u => u.Id == roleId);
+             var objFromDb = _db.Roles.FirstOrDefault(u => u.Id == roleId);
             if (objFromDb != null)
             {
 

@@ -91,3 +91,4 @@ loginpartial.cshtml
 49)view for creating updating Role
 50)edit and delete buttons Role
 60)delete a role in ui 
+61)Add toastor notification in ui
