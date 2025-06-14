@@ -102,3 +102,7 @@ loginpartial.cshtml
 68)Delete user
 ===========claim managment =============
 69)Claim store (create a statick class list of create edit and delete)
+70)Manage user claim get endpoint
+71)Manage userclaim post endpoint
+72)Claims view
+
