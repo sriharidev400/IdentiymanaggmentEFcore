@@ -92,3 +92,11 @@ loginpartial.cshtml
 50)edit and delete buttons Role
 60)delete a role in ui 
 61)Add toastor notification in ui
+============Asign roles to user=========
+62)Roles View Model
+63)Get endpoint to mange Role
+64)Display Roles assigned to a user
+65)Assign Role to use4 assign role to user
+66)Lock and unlock button
+67)Lock and unlock  in action
+68)Delete user
