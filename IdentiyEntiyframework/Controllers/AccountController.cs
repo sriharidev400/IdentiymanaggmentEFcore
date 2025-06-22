@@ -68,9 +68,9 @@ namespace IdentiyEntiyframework.Controllers
                 };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded) {
-                    if(model.RoleSelected!=null&& model.RoleSelected.Length>0 && model.RoleSelected == SD.Admin)
+                    if(model.RoleSelected!=null)
                     {
-                        await _userManager.AddToRoleAsync(user, SD.Admin);
+                        await _userManager.AddToRoleAsync(user, model.RoleSelected);
                     }
                     else
                     {

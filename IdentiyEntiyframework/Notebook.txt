@@ -106,3 +106,7 @@ loginpartial.cshtml
 71)Manage userclaim post endpoint
 72)Claims view
 
+=============Roles Policy and Requiremnts in .NET
+73)Assign roles to Accounts
+
+
