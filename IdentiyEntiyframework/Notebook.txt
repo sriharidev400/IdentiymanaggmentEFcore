@@ -120,6 +120,7 @@ loginpartial.cshtml
 83)func Type with policy based authorization
 84)Saperating Function Logic
 85)Custom Authorization Requiremnt Handler with Roles
+86)Date create column
 
 
 
