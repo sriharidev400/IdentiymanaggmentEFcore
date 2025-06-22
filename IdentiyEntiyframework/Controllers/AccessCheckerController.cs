@@ -40,6 +40,7 @@ namespace IdentiyEntiyframework.Controllers
             return View();
         }
         // account with admin role and (create and edit and delete) claim can  access
+        [Authorize(Policy = "Admin_Create_Edit_DeleteAccess")]
         public IActionResult Admin_Create_Edit_DeleteAccess()
         {
             return View();

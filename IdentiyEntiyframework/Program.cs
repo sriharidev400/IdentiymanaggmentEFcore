@@ -34,6 +34,12 @@ builder.Services.AddAuthorization(opt =>
     opt.AddPolicy("Admin", policy => policy.RequireRole(SD.Admin));
     opt.AddPolicy("AdminAndUser", policy => policy.RequireRole(SD.Admin).RequireRole(SD.User));
     opt.AddPolicy("AdminRole_Createclaim", policy => policy.RequireRole(SD.Admin).RequireClaim("create","True"));
+    opt.AddPolicy("Admin_Create_Edit_DeleteAccess", policy =>
+    policy.RequireRole(SD.Admin)
+    .RequireClaim("create", "True")
+    .RequireClaim("edit", "True")
+    .RequireClaim("delete", "True")
+    );
 });
 var app = builder.Build();
 
