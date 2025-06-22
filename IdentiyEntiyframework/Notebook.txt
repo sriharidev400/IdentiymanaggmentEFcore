@@ -113,3 +113,5 @@ loginpartial.cshtml
 76)allow anonymous and authorize
 77)Role access
 78)Policy based authorization
+79)Policy vs Role based authorization
+

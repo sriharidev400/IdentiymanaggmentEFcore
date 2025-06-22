@@ -24,6 +24,7 @@ namespace IdentiyEntiyframework.Controllers
             return View();
         }
         //account with role of user or admin can access
+        [Authorize(Policy = "AdminAndUser")]
         public IActionResult UserANDAdminRoleAccess()
         {
             return View();
