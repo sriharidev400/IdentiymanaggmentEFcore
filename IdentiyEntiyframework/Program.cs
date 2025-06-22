@@ -40,6 +40,13 @@ builder.Services.AddAuthorization(opt =>
     .RequireClaim("edit", "True")
     .RequireClaim("delete", "True")
     );
+    opt.AddPolicy("Admin_Create_Edit_DeleteAccess_OR_SuperAdminRole", policy => policy.RequireAssertion(context => (
+    context.User.IsInRole(SD.Admin)&&context.User.HasClaim(c=>c.Type=="Create" &&c.Value=="True")
+    && context.User.HasClaim(c => c.Type == "Edit" && c.Value == "True")
+    && context.User.HasClaim(c => c.Type == "Delete" && c.Value == "True")
+    )
+    || context.User.IsInRole(SD.SuperAdmin)
+    ));
 });
 var app = builder.Build();
 

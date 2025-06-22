@@ -50,5 +50,10 @@ namespace IdentiyEntiyframework.Controllers
         {
             return View();
         }
+        [Authorize(Policy = "Admin_Create_Edit_DeleteAccess_OR_SuperAdminRole")]
+        public IActionResult Admin_Create_Edit_DeleteAccess_OR_SuperAdminRole()
+        {
+            return View();
+        }
     }
 }
