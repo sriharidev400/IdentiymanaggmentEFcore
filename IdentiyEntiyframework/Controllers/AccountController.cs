@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Security.Claims;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 
@@ -118,7 +119,14 @@ namespace IdentiyEntiyframework.Controllers
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password,model.RemberMe,lockoutOnFailure:true);
                 if (result.Succeeded)
                 {
-                    
+                    var user = await _userManager.GetUserAsync(User);
+                    var claims = await _userManager.GetClaimsAsync(user);
+                    if (claims.Count > 0)
+                    {
+                        await _userManager.RemoveClaimAsync(user, claims.FirstOrDefault(u => u.Type == "FirstName"));
+                        
+                    }
+                    await _userManager.AddClaimAsync(user, new Claim("FirstName", user.Name));
                     return LocalRedirect(returnurl);
                 }
                 if (result.RequiresTwoFactor)
