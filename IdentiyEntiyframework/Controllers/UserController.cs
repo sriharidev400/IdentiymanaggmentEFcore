@@ -29,9 +29,10 @@ namespace IdentiyEntiyframework.Controllers
             foreach(var user in userList)
             {
                 var user_role = await _userManager.GetRolesAsync(user) as List<string>;
-
                 user.Role = string.Join(",", user_role);
-                
+                var user_claim =  _userManager.GetClaimsAsync(user).GetAwaiter().GetResult().Select(u=>u.Type);
+                user.UserClaim = string.Join(",", user_claim);
+
             }
 
             return View(userList);
