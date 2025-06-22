@@ -1,3 +1,4 @@
+using IdentiyEntiyframework;
 using IdentiyEntiyframework.DataBase;
 using IdentiyEntiyframework.Models;
 using IdentiyEntiyframework.Services;
@@ -27,6 +28,10 @@ builder.Services.Configure<IdentityOptions>(opt =>
     opt.Lockout.MaxFailedAccessAttempts = 3;
     //opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromDays(30);
     opt.SignIn.RequireConfirmedEmail = false;
+});
+builder.Services.AddAuthorization(opt =>
+{
+    opt.AddPolicy("Admin", policy => policy.RequireRole(SD.Admin));
 });
 var app = builder.Build();
 

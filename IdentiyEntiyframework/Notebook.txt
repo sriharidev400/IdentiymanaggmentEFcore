@@ -112,3 +112,4 @@ loginpartial.cshtml
 75)Setup Layout Links
 76)allow anonymous and authorize
 77)Role access
+78)Policy based authorization

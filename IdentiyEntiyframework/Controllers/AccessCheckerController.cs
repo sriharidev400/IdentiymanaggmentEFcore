@@ -28,7 +28,7 @@ namespace IdentiyEntiyframework.Controllers
         {
             return View();
         }
-        [Authorize(Roles =SD.Admin)]
+        [Authorize(Policy =SD.Admin)]
          public IActionResult AdminRoleAccess()
         {
             return View();
