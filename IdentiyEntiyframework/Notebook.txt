@@ -109,5 +109,6 @@ loginpartial.cshtml
 =============Roles Policy and Requiremnts in .NET
 73)Assign roles to Accounts
 74)Setup Project for Access checker
-
-
+75)Setup Layout Links
+76)allow anonymous and authorize
+77)Role access

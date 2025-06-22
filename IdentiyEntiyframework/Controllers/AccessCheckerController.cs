@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace IdentiyEntiyframework.Controllers
 {
+    [Authorize]
     public class AccessCheckerController : Controller
     {
         //Any one can access this
+        [AllowAnonymous]
         public IActionResult AllAccess()
         {
             return View();
@@ -15,12 +18,18 @@ namespace IdentiyEntiyframework.Controllers
             return View();
         }
         //account  with role of user can access
-        public IActionResult UserRoleAccess()
+        [Authorize(Roles =$"{SD.Admin},{SD.User}")]
+        public IActionResult UserORAdminRoleAccess()
         {
             return View();
         }
-        //account with role of admin can access
-        public IActionResult AdminRoleAccess()
+        //account with role of user or admin can access
+        public IActionResult UserANDAdminRoleAccess()
+        {
+            return View();
+        }
+        [Authorize(Roles =SD.Admin)]
+         public IActionResult AdminRoleAccess()
         {
             return View();
         }
@@ -31,6 +40,10 @@ namespace IdentiyEntiyframework.Controllers
         }
         // account with admin role and (create and edit and delete) claim can  access
         public IActionResult Admin_Create_Edit_DeleteAccess()
+        {
+            return View();
+        }
+        public IActionResult Admin_CreateAccess()
         {
             return View();
         }
