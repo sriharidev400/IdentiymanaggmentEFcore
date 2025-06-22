@@ -56,6 +56,7 @@ namespace IdentiyEntiyframework.Controllers
             return View();
         }
 
+        [Authorize(Policy = "AdminwithMoreThan1000Days")]
         public IActionResult Onlyhari()
         {
             return View();
