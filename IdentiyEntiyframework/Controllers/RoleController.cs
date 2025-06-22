@@ -1,5 +1,6 @@
 ﻿using IdentiyEntiyframework.DataBase;
 using IdentiyEntiyframework.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using NuGet.Packaging.Core;
@@ -72,6 +73,8 @@ namespace IdentiyEntiyframework.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        //[Authorize(Roles =SD.SuperAdmin)]
+        [Authorize(Policy="OnlySuperAdminChecker")]
         public async Task<IActionResult> Delete(string roleId)
         {
              var objFromDb = _db.Roles.FirstOrDefault(u => u.Id == roleId);

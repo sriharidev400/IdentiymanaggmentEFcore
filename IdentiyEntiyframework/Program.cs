@@ -1,4 +1,5 @@
 using IdentiyEntiyframework;
+using IdentiyEntiyframework.Authorize;
 using IdentiyEntiyframework.DataBase;
 using IdentiyEntiyframework.Models;
 using IdentiyEntiyframework.Services;
@@ -41,11 +42,10 @@ builder.Services.AddAuthorization(opt =>
     .RequireClaim("edit", "True")
     .RequireClaim("delete", "True")
     );
-    opt.AddPolicy("Admin_Create_Edit_DeleteAccess_OR_SuperAdminRole", policy => policy.RequireAssertion(context => (
-    Admin_Create_Edit_DeleteAccess_OR_SuperAdminRole(context)
-    ))
-    
-    );
+opt.AddPolicy("Admin_Create_Edit_DeleteAccess_OR_SuperAdminRole", policy => policy.RequireAssertion(context => (
+Admin_Create_Edit_DeleteAccess_OR_SuperAdminRole(context)
+)));
+    opt.AddPolicy("OnlySuperAdminChecker", p => p.Requirements.Add(new OnlySuperAdminChecker()));
 });
 var app = builder.Build();
 

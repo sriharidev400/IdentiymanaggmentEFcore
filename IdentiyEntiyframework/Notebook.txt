@@ -119,5 +119,7 @@ loginpartial.cshtml
 82)policy with multiple claims
 83)func Type with policy based authorization
 84)Saperating Function Logic
+85)Custom Authorization Requiremnt Handler with Roles
+
 
 
