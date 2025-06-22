@@ -44,6 +44,7 @@ namespace IdentiyEntiyframework.Controllers
         {
             return View();
         }
+        [Authorize(Policy="AdminRole_Createclaim")]
         public IActionResult Admin_CreateAccess()
         {
             return View();

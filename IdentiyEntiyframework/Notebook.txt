@@ -115,4 +115,6 @@ loginpartial.cshtml
 78)Policy based authorization
 79)Policy vs Role based authorization
 80)Display claim Type
+81)policy based authorization with claims
+
 
