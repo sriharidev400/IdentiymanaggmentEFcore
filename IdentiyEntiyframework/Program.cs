@@ -3,6 +3,7 @@ using IdentiyEntiyframework.Authorize;
 using IdentiyEntiyframework.DataBase;
 using IdentiyEntiyframework.Models;
 using IdentiyEntiyframework.Services;
+using IdentiyEntiyframework.Services.IServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -18,6 +19,7 @@ Options.UseSqlServer(builder.Configuration.GetConnectionString("conn")));
 builder.Services.AddIdentity<Applicationuser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDBcontext>().AddDefaultTokenProviders();
 builder.Services.AddTransient<IEmailSender, EmailSender>();
+builder.Services.AddScoped<INumberOfDaysForAccount, NumberOfDaysForAccount>();
 builder.Services.ConfigureApplicationCookie(opt =>
 {
     opt.AccessDeniedPath = new PathString("/Account/NoAccess");

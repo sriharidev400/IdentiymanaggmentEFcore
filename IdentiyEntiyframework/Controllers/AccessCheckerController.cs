@@ -55,5 +55,10 @@ namespace IdentiyEntiyframework.Controllers
         {
             return View();
         }
+
+        public IActionResult Onlyhari()
+        {
+            return View();
+        }
     }
 }
