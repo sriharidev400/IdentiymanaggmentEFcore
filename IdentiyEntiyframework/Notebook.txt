@@ -124,5 +124,7 @@ loginpartial.cshtml
 87)special page and service to get age of account
 88)Custom Handler in Action
 89)Setup project for claims Assignment
+90)Custom handler with claims
+
 
 
